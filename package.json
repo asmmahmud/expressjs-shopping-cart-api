@@ -1,0 +1,40 @@
+{
+  "name": "node-express.js-jwt-starter",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "~2.4.3",
+    "bluebird": "~3.5.1",
+    "body-parser": "~1.18.2",
+    "compression": "^1.7.1",
+    "cors": "~2.8.4",
+    "debug": "~3.1.0",
+    "express": "~4.16.2",
+    "express-jwt": "~5.3.0",
+    "express-jwt-authz": "^1.0.0",
+    "express-validation": "~1.0.2",
+    "helmet": "^3.9.0",
+    "http-status": "~1.0.1",
+    "joi": "^13.0.2",
+    "jsonwebtoken": "^8.1.0",
+    "jwks-rsa": "^1.2.1",
+    "method-override": "~2.3.10",
+    "mongoose": "~4.13.2",
+    "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "eslint": "^4.11.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "prettier-eslint": "^8.2.5"
+  },
+  "repository": "https://github.com/asmmahmud/expressjs-node.js-starter",
+  "author": "A.S.M. Mahmudul Hasan",
+  "license": "MIT"
+}

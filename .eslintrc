@@ -1,0 +1,42 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "mongo": true,
+    "mocha": true
+  },
+  "extends": "eslint:recommended",
+  "parser": "babel-eslint",
+  "rules": {
+    "semi": [
+      "error",
+      "always",
+      {
+        "omitLastInOneLineBlock": true
+      }
+    ],
+    "no-console": "off",
+    "no-set-state": "off",
+    "block-scoped-var": "error",
+    "no-alert": "error",
+    "vars-on-top": "error",
+    "no-cond-assign": [
+      "error",
+      "always"
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "local",
+        "args": "none"
+      }
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": true
+      }
+    ]
+  }
+}
