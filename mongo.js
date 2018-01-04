@@ -1,7 +1,7 @@
+const config = require('./config/index');
 const mongoose = require('mongoose');
 const Product = require('./Product');
 const products = require('./products');
-const config = require('./config/index');
 
 mongoose.Promise = global.Promise;
 mongoose

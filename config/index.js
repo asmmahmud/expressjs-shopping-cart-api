@@ -1,7 +1,11 @@
 const expressJwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
-var jwtCheck = expressJwt({
+process.env.NODE_ENV = 'production';
+/*
+ Auth0 auth middleware for express-jwt
+*/
+const jwtCheck = expressJwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
@@ -22,7 +26,8 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
   console.log('production');
-  config.mongoUri = 'mongodb://asmmahmud:mnm1b98Q9z76xH5c7adodiq@127.0.0.1:27017/shopping-cart-api';
+  config.mongoUri =
+    'mongodb://asmmahmud:mnm1b98Q9z76xH5c7adodiq@ds237717.mlab.com:37717/shopping-cart-api';
 } else {
   console.log('DEV');
   config.mongoUri = 'mongodb://localhost/shopping-cart-api';

@@ -1,3 +1,4 @@
+const config = require('./config/index');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -9,11 +10,9 @@ const helmet = require('helmet');
 const compress = require('compression');
 const expressValidation = require('express-validation');
 const httpStatus = require('http-status');
-const config = require('./config/index');
+
 const indexRoutes = require('./routes/index');
 const APIError = require('./helpers/APIError');
-
-process.env.NODE_ENV = 'production';
 
 const app = express();
 if (config.env === 'development') {
