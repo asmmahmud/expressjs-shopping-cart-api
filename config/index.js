@@ -15,13 +15,14 @@ var jwtCheck = expressJwt({
 
 const config = {
   env: process.env.NODE_ENV,
-  port: process.env.PORT || 80,
+  port: process.env.PORT || 9000,
   jwtExpiresIn: 86400,
   jwtMiddleware: jwtCheck
 };
 
 if (process.env.NODE_ENV === 'production') {
-  config.mongoUri = 'mongodb://localhost/shopping-cart-api';
+  console.log('production');
+  config.mongoUri = 'mongodb://asmmahmud:mnm1b98Q9z76xH5c7adodiq@127.0.0.1:27017/shopping-cart-api';
 } else {
   console.log('DEV');
   config.mongoUri = 'mongodb://localhost/shopping-cart-api';

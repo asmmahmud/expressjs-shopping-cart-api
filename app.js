@@ -13,6 +13,8 @@ const config = require('./config/index');
 const indexRoutes = require('./routes/index');
 const APIError = require('./helpers/APIError');
 
+process.env.NODE_ENV = 'production';
+
 const app = express();
 if (config.env === 'development') {
   app.use(logger('dev'));
@@ -46,9 +48,7 @@ app.use('/api', indexRoutes);
 app.use((err, req, res, next) => {
   if (err instanceof expressValidation.ValidationError) {
     // validation error contains errors which is an array of error each containing message[]
-    const unifiedErrorMessage = err.errors
-      .map(error => error.messages.join('. '))
-      .join(' and ');
+    const unifiedErrorMessage = err.errors.map(error => error.messages.join('. ')).join(' and ');
     const error = new APIError(unifiedErrorMessage, err.status, true);
     return next(error);
   } else if (!(err instanceof APIError)) {
