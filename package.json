@@ -1,5 +1,5 @@
 {
-  "name": "node-express.js-jwt-starter",
+  "name": "expressjs-shopping-cart-api",
   "version": "1.0.0",
   "private": false,
   "scripts": {
@@ -34,7 +34,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "prettier-eslint": "^8.2.5"
   },
-  "repository": "https://github.com/asmmahmud/expressjs-node.js-starter",
+  "repository": "https://github.com/asmmahmud/expressjs-shopping-cart-api.git",
   "author": "A.S.M. Mahmudul Hasan",
   "license": "MIT"
 }
