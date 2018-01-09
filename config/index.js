@@ -1,7 +1,7 @@
 const expressJwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
 /*
  Auth0 auth middleware for express-jwt
 */
