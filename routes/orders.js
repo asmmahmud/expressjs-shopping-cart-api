@@ -13,3 +13,14 @@ module.exports = router;
 
 // config.jwtMiddleware,
 // validate(paramValidation.createOrder),
+// const temp1 = {
+//   billingAddress: {
+//     name: 'ldfjdlsjf',
+//     email: 'flsdjf@lsjf.com',
+//     postCode: '2321',
+//     district: 'Sherpur',
+//     country: 'BD'
+//   },
+//   shippingMethod: 'ups',
+//   paymentMethod: 'skrill'
+// };

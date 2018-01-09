@@ -27,14 +27,10 @@ exports.get = function (req, res, next) {
  */
 
 exports.placeOrder = function (req, res, next) {
-  console.log(req.body);
+  // console.log(req.body);
   // res.json(req.body);
   if (!(Array.isArray(req.body.items) && req.body.items.length)) {
-    const err = new APIError(
-      'No order items included',
-      httpStatus.UNPROCESSABLE_ENTITY,
-      true
-    );
+    const err = new APIError('No order items included', httpStatus.UNPROCESSABLE_ENTITY, true);
     return next(err);
   }
   const orderData = {
@@ -54,7 +50,7 @@ exports.placeOrder = function (req, res, next) {
   orderData.grandTotal = req.body.items.reduce((total, item) => {
     return total + item.price * item.qty;
   }, 0);
-  console.log(orderData);
+  // console.log(orderData);
   const order = new Order(orderData);
 
   order
@@ -71,22 +67,14 @@ exports.placeOrder = function (req, res, next) {
           res.json(savedOrder);
         })
         .catch(err => {
-          console.log(err);
-          const error = new APIError(
-            err.message,
-            httpStatus.INTERNAL_SERVER_ERROR,
-            true
-          );
+          // console.log(err);
+          const error = new APIError(err.message, httpStatus.INTERNAL_SERVER_ERROR, true);
           return next(error);
         });
     })
     .catch(err => {
-      console.log(err);
-      const error = new APIError(
-        err.message,
-        httpStatus.INTERNAL_SERVER_ERROR,
-        true
-      );
+      // console.log(err);
+      const error = new APIError(err.message, httpStatus.INTERNAL_SERVER_ERROR, true);
       return next(error);
     });
 };
@@ -100,13 +88,9 @@ exports.placeOrder = function (req, res, next) {
 
 exports.list = function (req, res, next) {
   const { email, sort = 'createdAt', limit = 50, skip = 0 } = req.query;
-  console.log(email);
+  // console.log(email);
   if (!email) {
-    throw new APIError(
-      'order email has not been provided!',
-      httpStatus.BAD_REQUEST,
-      true
-    );
+    throw new APIError('order email has not been provided!', httpStatus.BAD_REQUEST, true);
   }
   Order.list({ email, sort, limit, skip })
     .then(orders => res.json(orders))

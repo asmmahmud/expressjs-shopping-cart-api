@@ -5,6 +5,7 @@ const config = require('../config/index');
 // const usersRoutes = require('./users');
 const productsRoutes = require('./products');
 const ordersRoutes = require('./orders');
+const cartRoutes = require('./cart');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -18,6 +19,7 @@ router.get('/about', function (req, res, next) {
 
 // router.use('/user', usersRoutes);
 router.use('/products', productsRoutes);
+router.use('/cart', cartRoutes);
 router.use('/orders', config.jwtMiddleware, ordersRoutes);
 
 module.exports = router;
