@@ -25,7 +25,7 @@ exports.add = function (req, res, next) {
         if (indexFound !== -1 && qty <= 0) {
           cart.items.splice(indexFound, 1);
         } else if (indexFound !== -1) {
-          cart.items[indexFound].qty = qty;
+          cart.items[indexFound].qty = cart.items[indexFound].qty + qty;
         } else if (qty > 0) {
           cart.items.push({
             product_id: product_id,
@@ -60,6 +60,55 @@ exports.add = function (req, res, next) {
       return next(error);
     });
 };
+
+/**
+ * add product to cart.
+ * @property {string} req.query.email
+ * @property {string} req.query.product_id
+ * @property {number} req.query.qty
+ * @returns {Cart}
+ */
+exports.subtract = function (req, res, next) {
+  const { email, product_id } = req.body;
+  const qty = Number.parseInt(req.body.qty);
+  console.log('qty: ', qty);
+  Cart.findOne({ email: email })
+    .exec()
+    .then(cart => {
+      if (!cart || qty <= 0) {
+        throw new Error('Invalid request');
+      } else {
+        const indexFound = cart.items.findIndex(item => {
+          return item.product_id === product_id;
+        });
+        if (indexFound !== -1) {
+          console.log('index Found: ', indexFound);
+          console.log('before update items: ', cart.items);
+          let updatedQty = cart.items[indexFound].qty - qty;
+          if (updatedQty <= 0) {
+            cart.items.splice(indexFound, 1);
+          } else {
+            cart.items[indexFound].qty = updatedQty;
+          }
+          console.log('after update items: ', cart.items);
+          return cart.save();
+        } else {
+          throw new Error('Invalid request');
+        }
+      }
+    })
+    .then(updatedCart => res.json(updatedCart))
+    .catch(err => {
+      let error;
+      if (err.message === 'Invalid request') {
+        error = new APIError(err.message, httpStatus.BAD_REQUEST, true);
+      } else {
+        error = new APIError(err.message, httpStatus.NOT_FOUND);
+      }
+      return next(error);
+    });
+};
+
 /**
  * Get cart by email.
  * @property {string} req.query.email

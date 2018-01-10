@@ -19,7 +19,7 @@ router.get('/about', function (req, res, next) {
 
 // router.use('/user', usersRoutes);
 router.use('/products', productsRoutes);
-router.use('/cart', cartRoutes);
+router.use('/cart', config.jwtMiddleware, cartRoutes);
 router.use('/orders', config.jwtMiddleware, ordersRoutes);
 
 module.exports = router;
