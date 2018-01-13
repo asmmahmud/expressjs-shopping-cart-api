@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const Order = require('../models/Order');
 const Product = require('../models/Product');
+const Cart = require('../models/Cart');
 /**
  * Load product and append to req.
  */
@@ -63,6 +64,13 @@ exports.placeOrder = function (req, res, next) {
         });
       });
       Promise.all(allProductPromises)
+        .then(data => {
+          return Cart.get(savedOrder.user);
+        })
+        .then(cart => {
+          cart.items = [];
+          return cart.save();
+        })
         .then(data => {
           res.json(savedOrder);
         })
